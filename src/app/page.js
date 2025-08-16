@@ -40,6 +40,27 @@ export default function Home() {
   const [estadoPartida, setEstadoPartida] = useState(0)
 
   const [historial, setHistorial] = useState([])
+
+  // Cargar historial desde localStorage al montar el componente
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedHistorial = localStorage.getItem('gameHistorial')
+      if (savedHistorial) {
+        try {
+          setHistorial(JSON.parse(savedHistorial))
+        } catch (error) {
+          console.error('Error parsing historial from localStorage:', error)
+        }
+      }
+    }
+  }, [])
+
+  // Guardar historial en localStorage cada vez que cambie
+  useEffect(() => {
+    if (typeof window !== 'undefined' && historial.length > 0) {
+      localStorage.setItem('gameHistorial', JSON.stringify(historial))
+    }
+  }, [historial])
   const [hojaDePuntos, setHojaDePuntos] = useState({
     nombre: '',
     casas: {
@@ -320,6 +341,16 @@ export default function Home() {
     setEstadoPartida(2)
     emitGamestatus({ estadoPartida: 2 })
     socket.emit('limpiarPlayers')
+  }
+
+  // Función temporal para probar el historial
+  const agregarEntradaHistorial = (mensaje) => {
+    const nuevaEntrada = {
+      id: Date.now(),
+      log: mensaje,
+      time: Date.now()
+    }
+    setHistorial(prev => [...prev, nuevaEntrada])
   }
 
   const resetHojasDePuntos = () => {

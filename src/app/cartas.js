@@ -1036,20 +1036,20 @@ const Misiones = [
 ]
 
 const TIPOS = {
-  0: 'BIS',
-  1: 'PARQUE',
-  2: 'PISCINA',
-  3: 'BANCO',
-  4: 'VALLA',
-  5: 'TRABAJO'
+  0: 'ASTRONSUTA',
+  1: 'AGUA',
+  2: 'ROBOTS',
+  3: 'CALENDARIO',
+  4: 'PLANTAS',
+  5: 'ENERGIA'
 }
 const TIPOS_EMOJIS = {
-  0: '📭',
-  1: '🌴',
-  2: '🏊‍♀️',
-  3: '💵',
-  4: '🏠',
-  5: '🚧'
+  0: '🧑‍🚀',
+  1: '💧',
+  2: '🤖',
+  3: '📆',
+  4: '🌱',
+  5: '⚡'
 }
 
 export { Cartas, Misiones, TIPOS, TIPOS_EMOJIS }

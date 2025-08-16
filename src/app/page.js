@@ -5,6 +5,7 @@ import { Cartas, Misiones, TIPOS, TIPOS_EMOJIS } from './cartas'
 import { useEffect, useState } from 'react'
 // import io from 'socket.io-client'
 import io from 'socket.io-client'
+import SpaceParticles from './components/SpaceParticles'
 const socket = io(process.env.NEXT_PUBLIC_LOCAL_URL, {
   cors: {
     origin: '*' // Si es necesario, ajusta según el origen permitido
@@ -243,7 +244,7 @@ export default function Home() {
     changeImage('imgMis2', misionNivel2.img)
     changeImage('imgMis3', misionNivel3.img)
 
-    emitMissionCards([misionNivel1.id, misionNivel2.id, misionNivel3.id])
+    emitMissionCards([misionNivel1.id, misionNivel2.id,missionNivel3.id])
   }
 
   const handleSacarTres = (allReady) => {
@@ -337,7 +338,7 @@ export default function Home() {
   const finalizarPartida = async () => {
     addLog('🏁 FINALIZANDO PARTIDA', 'finalizar-partida')
     addLog('Calculando puntuaciones finales...', 'calculo-final')
-    
+
     await conteoFinalDePuntos()
 
     // PEDIR LISTA DE JUGADORES PARA SABER LOS PUNTOS TOTALES DE TRABAJO √
@@ -346,7 +347,7 @@ export default function Home() {
 
     addLog(`🎯 Tu puntuación final: ${hojaDePuntos.puntos.totales.final} puntos`, 'puntuacion-final')
     addLog('=============', 'espacio-blanco')
-    
+
     setEstadoPartida(2)
     emitGamestatus({ estadoPartida: 2 })
     socket.emit('limpiarPlayers')
@@ -502,7 +503,7 @@ export default function Home() {
     addLog('=============', 'espacio-blanco')
     addLog('🎮 NUEVA PARTIDA INICIADA', 'inicio-partida')
     addLog('Preparando el juego...', 'preparacion')
-    
+
     handleSacarMisiones()
     let newMazo = shuffle([...Cartas])
 
@@ -1244,7 +1245,9 @@ export default function Home() {
           changeImage('imgNum3', n3.frontal.img)
 
           addLog('***', 'espacio-cartas')
-          addLog(`-> Se robaron tres cartas:`, 'sacar-cartas')
+          addLog(
+            `-> Se robaron tres cartas:`, 'sacar-cartas'
+          )
           addLog(
             `  Opcion 1: ${n1.frontal.valor} ${TIPOS_EMOJIS[t1.reverso.tipo]}`,
             'carta-1'
@@ -1311,8 +1314,9 @@ export default function Home() {
   }, [socket])
 
   return (
-    <div className='bg-zinc-900 w-full text-emerald-50 grid grid-rows-[7rem_1fr] items-center justify-items-center min-h-screen gap-16  font-[family-name:var(--font-geist-sans)]'>
-      <nav className='px-2 w-full h-full flex flex-row gap-2 justify-between items-center bg-emerald-900'>
+    <div className='relative min-h-screen w-full overflow-hidden bg-zinc-900 text-emerald-50 grid grid-rows-[7rem_1fr] items-center justify-items-center gap-16 font-[family-name:var(--font-geist-sans)]'>
+      <SpaceParticles />
+      <nav className='z-10 relative w-full h-full flex flex-row gap-2 justify-between items-center bg-emerald-900'>
         {estadoPartida !== 1 && (
           <button
             onClick={iniciarPartida}
@@ -1370,31 +1374,37 @@ export default function Home() {
         }`}
       >
         <section className='w-full flex flex-col border-2 border-emerald-500 relative overflow-hidden'>
-          <div className='absolute -top-1/3 -left-["5%"] -translate-y-1/2 rounded-full w-full h-full blur-3xl mix-blend opacity bg-emerald-700 z-0'></div>
-          <div className='absolute top-3/4 -left-1/4 -translate-x-1/2 rounded-full w-full h-full blur-3xl mix-blend opacity bg-emerald-600 z-0'></div>
+          <div className='absolute -top-1/3 -left-["5%"] -translate-y-1/2 rounded-full w-full h-full blur-3xl mix-blend-multiply opacity-70 bg-emerald-700 z-0'></div>
+          <div className='absolute top-3/4 -left-1/4 -translate-x-1/2 rounded-full w-full h-full blur-3xl mix-blend-multiply opacity-60 bg-emerald-600 z-0'></div>
 
           <div className='z-10 flex-1 flex flex-row flex-wrap justify-center items-center p-2 gap-4  overflow-hidden'>
-            <Image
-              width={500}
-              height={500}
-              src={images.imgMis1}
-              alt='carta'
-              className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-            />
-            <Image
-              width={500}
-              height={500}
-              src={images.imgMis2}
-              alt='carta'
-              className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-            />
-            <Image
-              width={500}
-              height={500}
-              src={images.imgMis3}
-              alt='carta'
-              className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-            />
+            <div className='relative floating-card card-game'>
+              <Image
+                width={500}
+                height={500}
+                src={images.imgMis1}
+                alt='carta'
+                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+              />
+            </div>
+            <div className='relative floating-card card-game'>
+              <Image
+                width={500}
+                height={500}
+                src={images.imgMis2}
+                alt='carta'
+                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+              />
+            </div>
+            <div className='relative floating-card card-game'>
+              <Image
+                width={500}
+                height={500}
+                src={images.imgMis3}
+                alt='carta'
+                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+              />
+            </div>
           </div>
         </section>
         <button
@@ -1405,57 +1415,69 @@ export default function Home() {
           {jugadorReady ? 'Esperando...' : 'Sacar tres'}
         </button>
         <section className='w-full flex flex-col p-2 border-2 border-emerald-500 relative overflow-hidden'>
-          <div className='absolute -top-1/3 -left-["5%"] -translate-y-1/2 rounded-full w-full h-full blur-3xl mix-blend opacity bg-emerald-700 z-0'></div>
-          <div className='absolute top-3/4 -left-1/4 -translate-x-1/2 rounded-full w-full h-full blur-3xl mix-blend opacity bg-emerald-600 z-0'></div>
+          <div className='absolute -top-1/3 -left-["5%"] -translate-y-1/2 rounded-full w-full h-full blur-3xl mix-blend-multiply opacity-70 bg-emerald-700 z-0'></div>
+          <div className='absolute top-3/4 -left-1/4 -translate-x-1/2 rounded-full w-full h-full blur-3xl mix-blend-multiply opacity-60 bg-emerald-600 z-0'></div>
 
           <div className='z-10 flex-1 flex-wrap flex flex-row justify-center items-center p-2 gap-4  overflow-hidden'>
             <div className='flex flex-row justify-center items-center p-2 gap-4  overflow-hidden'>
-              <Image
-                width={500}
-                height={500}
-                src={images.imgNum1}
-                alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-              />
-              <Image
-                width={500}
-                height={500}
-                src={images.imgTipo1}
-                alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-              />
+              <div className='relative floating-card card-game'>
+                <Image
+                  width={500}
+                  height={500}
+                  src={images.imgNum1}
+                  alt='carta'
+                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                />
+              </div>
+              <div className='relative floating-card card-game'>
+                <Image
+                  width={500}
+                  height={500}
+                  src={images.imgTipo1}
+                  alt='carta'
+                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                />
+              </div>
             </div>
             <div className=' flex flex-row justify-center items-center p-2 gap-4  overflow-hidden'>
-              <Image
-                width={500}
-                height={500}
-                src={images.imgNum2}
-                alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-              />
-              <Image
-                width={500}
-                height={500}
-                src={images.imgTipo2}
-                alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-              />
+              <div className='relative floating-card card-game'>
+                <Image
+                  width={500}
+                  height={500}
+                  src={images.imgNum2}
+                  alt='carta'
+                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                />
+              </div>
+              <div className='relative floating-card card-game'>
+                <Image
+                  width={500}
+                  height={500}
+                  src={images.imgTipo2}
+                  alt='carta'
+                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                />
+              </div>
             </div>
             <div className='flex flex-row justify-center items-center p-2 gap-4  overflow-hidden'>
-              <Image
-                width={500}
-                height={500}
-                src={images.imgNum3}
-                alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-              />
-              <Image
-                width={500}
-                height={500}
-                src={images.imgTipo3}
-                alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
-              />
+              <div className='relative floating-card card-game'>
+                <Image
+                  width={500}
+                  height={500}
+                  src={images.imgNum3}
+                  alt='carta'
+                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                />
+              </div>
+              <div className='relative floating-card card-game'>
+                <Image
+                  width={500}
+                  height={500}
+                  src={images.imgTipo3}
+                  alt='carta'
+                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -2216,7 +2238,7 @@ export default function Home() {
               name='m1'
               value={hojaDePuntos.puntos.misiones.m1}
               type='text'
-              className=' appearance-none  w-[2rem] h-[2rem] absolute top-[67.5%] left-[7.2%] text-zinc-950 text-center bg-transparent'
+              className=' appearance-none  w-[2rem] h-[2rem] absolute top-[89.7%] left-[7.2%] text-zinc-950 text-center bg-transparent'
             />
             <input
               onChange={handleChangePuntosMisiones}

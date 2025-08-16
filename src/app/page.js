@@ -244,7 +244,7 @@ export default function Home() {
     changeImage('imgMis2', misionNivel2.img)
     changeImage('imgMis3', misionNivel3.img)
 
-    emitMissionCards([misionNivel1.id, misionNivel2.id,missionNivel3.id])
+    emitMissionCards([misionNivel1.id, misionNivel2.id, misionNivel3.id])
   }
 
   const handleSacarTres = (allReady) => {
@@ -1316,12 +1316,12 @@ export default function Home() {
   return (
     <div className='relative min-h-screen w-full overflow-hidden text-neon grid grid-rows-[auto_1fr] items-center justify-items-center gap-4 md:gap-16 font-[family-name:var(--font-geist-sans)]'>
       <SpaceParticles />
-      <nav className='z-10 relative w-full px-2 py-4 md:px-4 flex flex-col md:flex-row gap-2 justify-between items-center glass-morphism'>
-        <div className='flex flex-wrap gap-2 justify-center md:justify-start'>
+      <nav className='z-10 relative w-full px-4 py-4 flex gap-2 justify-between items-center glass-morphism'>
+        <div className='flex gap-2'>
           {estadoPartida !== 1 && (
             <button
               onClick={iniciarPartida}
-              className='space-button hover-glow z-10 w-32 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-3 md:px-6 rounded-lg transition-all duration-300'
+              className='space-button hover-glow z-10 w-40 h-16 text-sm font-bold text-center py-2 px-6 rounded-lg transition-all duration-300'
             >
               Iniciar Partida
             </button>
@@ -1329,60 +1329,60 @@ export default function Home() {
           {estadoPartida === 1 && (
             <button
               onClick={finalizarPartida}
-              className='space-button hover-glow z-10 w-32 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-3 md:px-6 rounded-lg transition-all duration-300'
+              className='space-button hover-glow z-10 w-40 h-16 text-sm font-bold text-center py-2 px-6 rounded-lg transition-all duration-300'
             >
               Finalizar Partida
             </button>
           )}
         </div>
         
-        <h1 className='flex-1 text-center font-bold text-2xl md:text-4xl lg:text-5xl p-2 text-neon'>
+        <h1 className='flex-1 text-center font-bold text-5xl p-2 text-neon'>
           WELCOME TO
         </h1>
 
-        <div className='flex flex-wrap gap-2 justify-center md:justify-end'>
+        <div className='flex gap-2'>
           <button
             onClick={handleHojaDeCalle}
-            className='space-button hover-glow z-10 w-28 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-2 md:px-6 rounded-lg transition-all duration-300'
+            className='space-button hover-glow z-10 w-40 h-16 text-sm font-bold text-center py-2 px-6 rounded-lg transition-all duration-300'
           >
             {!showHojaPuntos ? 'Hoja' : 'Cerrar'}
           </button>
           <button
             onClick={handleHistorial}
-            className='space-button hover-glow z-10 w-28 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-2 md:px-6 rounded-lg transition-all duration-300'
+            className='space-button hover-glow z-10 w-40 h-16 text-sm font-bold text-center py-2 px-6 rounded-lg transition-all duration-300'
           >
             {!showHistorial ? 'Historial' : 'Cerrar'}
           </button>
           <button
             onClick={() => agregarEntradaHistorial(`🎲 Acción de prueba - ${new Date().toLocaleTimeString()}`)}
-            className='space-button hover-glow z-10 w-20 md:w-32 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-2 md:px-4 rounded-lg transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600'
+            className='space-button hover-glow z-10 w-32 h-16 text-sm font-bold text-center py-2 px-4 rounded-lg transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600'
           >
             Test
           </button>
           <button
             onClick={handleAyuda}
-            className='space-button hover-glow z-10 w-28 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-2 md:px-6 rounded-lg transition-all duration-300'
+            className='space-button hover-glow z-10 w-40 h-16 text-sm font-bold text-center py-2 px-6 rounded-lg transition-all duration-300'
           >
             {!showAyuda ? 'Ayuda' : 'Cerrar'}
           </button>
         </div>
       </nav>
       <main
-        className={`w-full h-full flex flex-col p-2 md:p-4 gap-4 md:gap-8 row-start-2 items-center ${
+        className={`w-full h-full flex flex-col p-4 gap-8 row-start-2 items-center ${
           (showAyuda || showHistorial || showHojaPuntos) && 'hidden'
         }`}
       >
         <section className='w-full max-w-6xl flex flex-col glass-morphism relative overflow-hidden rounded-lg'>
           <div className='absolute -top-1/3 -left-1/4 rounded-full w-full h-full blur-3xl opacity-30 bg-gradient-to-r from-var(--primary) to-var(--secondary) z-0'></div>
 
-          <div className='z-10 flex-1 flex flex-col md:flex-row flex-wrap justify-center items-center p-4 gap-4 overflow-hidden'>
+          <div className='z-10 flex-1 flex flex-row flex-wrap justify-center items-center p-4 gap-4 overflow-hidden'>
             <div className='relative floating-card card-game pulse-glow'>
               <Image
                 width={500}
                 height={500}
                 src={images.imgMis1}
                 alt='carta'
-                className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                className='w-auto p-2 object-contain min-w-32 max-h-48'
               />
             </div>
             <div className='relative floating-card card-game pulse-glow'>
@@ -1391,7 +1391,7 @@ export default function Home() {
                 height={500}
                 src={images.imgMis2}
                 alt='carta'
-                className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                className='w-auto p-2 object-contain min-w-32 max-h-48'
               />
             </div>
             <div className='relative floating-card card-game pulse-glow'>
@@ -1400,7 +1400,7 @@ export default function Home() {
                 height={500}
                 src={images.imgMis3}
                 alt='carta'
-                className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                className='w-auto p-2 object-contain min-w-32 max-h-48'
               />
             </div>
           </div>
@@ -1408,7 +1408,7 @@ export default function Home() {
         
         <button
           onClick={handleSacarTres}
-          className='space-button neon-glow z-10 w-40 md:w-48 h-12 md:h-16 font-bold text-center py-2 px-6 rounded-lg transition-all duration-300 disabled:opacity-50'
+          className='space-button neon-glow z-10 w-48 h-16 font-bold text-center py-2 px-6 rounded-lg transition-all duration-300 disabled:opacity-50'
           disabled={jugadorReady}
         >
           {jugadorReady ? 'Esperando...' : 'Sacar tres'}
@@ -1417,15 +1417,15 @@ export default function Home() {
         <section className='w-full max-w-6xl flex flex-col glass-morphism relative overflow-hidden rounded-lg'>
           <div className='absolute -top-1/3 -right-1/4 rounded-full w-full h-full blur-3xl opacity-30 bg-gradient-to-l from-var(--accent) to-var(--primary) z-0'></div>
 
-          <div className='z-10 flex-1 flex flex-col lg:flex-row flex-wrap justify-center items-center p-4 gap-4 overflow-hidden'>
-            <div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4'>
+          <div className='z-10 flex-1 flex flex-row flex-wrap justify-center items-center p-4 gap-4 overflow-hidden'>
+            <div className='flex flex-row justify-center items-center gap-4'>
               <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgNum1}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                  className='w-auto p-2 object-contain min-w-32 max-h-48'
                 />
               </div>
               <div className='relative floating-card card-game hover-glow'>
@@ -1434,18 +1434,18 @@ export default function Home() {
                   height={500}
                   src={images.imgTipo1}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                  className='w-auto p-2 object-contain min-w-32 max-h-48'
                 />
               </div>
             </div>
-            <div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4'>
+            <div className='flex flex-row justify-center items-center gap-4'>
               <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgNum2}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                  className='w-auto p-2 object-contain min-w-32 max-h-48'
                 />
               </div>
               <div className='relative floating-card card-game hover-glow'>
@@ -1454,18 +1454,18 @@ export default function Home() {
                   height={500}
                   src={images.imgTipo2}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                  className='w-auto p-2 object-contain min-w-32 max-h-48'
                 />
               </div>
             </div>
-            <div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4'>
+            <div className='flex flex-row justify-center items-center gap-4'>
               <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgNum3}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                  className='w-auto p-2 object-contain min-w-32 max-h-48'
                 />
               </div>
               <div className='relative floating-card card-game hover-glow'>
@@ -1474,7 +1474,7 @@ export default function Home() {
                   height={500}
                   src={images.imgTipo3}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
+                  className='w-auto p-2 object-contain min-w-32 max-h-48'
                 />
               </div>
             </div>
@@ -1504,7 +1504,7 @@ export default function Home() {
               <ul className='space-y-2'>
                 {historial.map((reg, idx) => {
                   return (
-                    <li key={reg.id} className='text-sm md:text-base p-2 glass-morphism rounded'>
+                    <li key={reg.id} className='text-base p-2 glass-morphism rounded'>
                       <div className='text-xs opacity-70 mb-1'>
                         {new Date(reg.time).toLocaleTimeString()}
                       </div>
@@ -1518,8 +1518,8 @@ export default function Home() {
         </div>
       )}
       {showHojaPuntos && (
-        <div className='w-full h-full flex flex-col items-center justify-center p-2 md:p-4 overflow-auto'>
-          <section className='relative w-full max-w-[90vw] md:max-w-[50rem] h-auto md:h-[50rem] p-2 glass-morphism rounded-lg'>
+        <div className='w-full h-full flex flex-col items-center justify-center p-4 overflow-auto'>
+          <section className='relative w-full max-w-[50rem] h-[50rem] p-2 glass-morphism rounded-lg'>
             <Image
               width={1200}
               height={1200}
@@ -2734,13 +2734,13 @@ export default function Home() {
           }}
           className='fixed inset-0 w-full h-full flex flex-col items-center justify-center z-50 bg-black bg-opacity-50 backdrop-blur-sm'
         >
-          <div className='flex-col gap-4 z-10 w-80 md:w-96 h-auto p-6 rounded-lg flex justify-center items-center glass-morphism neon-glow mx-4'>
-            <h1 className='text-xl md:text-3xl font-extrabold text-neon text-center'>JUEGO TERMINADO!</h1>
+          <div className='flex-col gap-4 z-10 w-96 h-auto p-6 rounded-lg flex justify-center items-center glass-morphism neon-glow'>
+            <h1 className='text-3xl font-extrabold text-neon text-center'>JUEGO TERMINADO!</h1>
             <div className='score-display w-full'>
-              <h2 className='text-lg md:text-2xl font-bold text-center'>
+              <h2 className='text-2xl font-bold text-center'>
                 TU PUNTUACIÓN ES: 
               </h2>
-              <div className='text-2xl md:text-4xl font-black text-neon text-center mt-2'>
+              <div className='text-4xl font-black text-neon text-center mt-2'>
                 {hojaDePuntos.puntos.totales.final}
               </div>
             </div>

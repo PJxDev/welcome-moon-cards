@@ -1354,12 +1354,6 @@ export default function Home() {
             {!showHistorial ? 'Historial' : 'Cerrar'}
           </button>
           <button
-            onClick={() => agregarEntradaHistorial(`🎲 Acción de prueba - ${new Date().toLocaleTimeString()}`)}
-            className='space-button hover-glow z-10 w-32 h-16 text-sm font-bold text-center py-2 px-4 rounded-lg transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600'
-          >
-            Test
-          </button>
-          <button
             onClick={handleAyuda}
             className='space-button hover-glow z-10 w-40 h-16 text-sm font-bold text-center py-2 px-6 rounded-lg transition-all duration-300'
           >

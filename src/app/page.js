@@ -1314,168 +1314,167 @@ export default function Home() {
   }, [socket])
 
   return (
-    <div className='relative min-h-screen w-full overflow-hidden bg-zinc-900 text-emerald-50 grid grid-rows-[7rem_1fr] items-center justify-items-center gap-16 font-[family-name:var(--font-geist-sans)]'>
+    <div className='relative min-h-screen w-full overflow-hidden text-neon grid grid-rows-[auto_1fr] items-center justify-items-center gap-4 md:gap-16 font-[family-name:var(--font-geist-sans)]'>
       <SpaceParticles />
-      <nav className='z-10 relative w-full h-full flex flex-row gap-2 justify-between items-center bg-emerald-900'>
-        {estadoPartida !== 1 && (
-          <button
-            onClick={iniciarPartida}
-            className='z-10 w-40 h-16 font-bold text-center py-2 px-6 rounded-lg button-shaddow border-2 text-emerald-500 border-emerald-600
-          bg-emerald-950 hover:text-emerald-700 hover:border-emerald-700 active:text-emerald-800 active:border-emerald-800 disabled:bg-zinc-950 disabled:text-emerald-900 disabled:border-emerald-900'
-          >
-            Iniciar Partida
-          </button>
-        )}
-        {estadoPartida === 1 && (
-          <button
-            onClick={finalizarPartida}
-            className='z-10 w-40 h-16 font-bold text-center py-2 px-6 rounded-lg button-shaddow border-2 text-emerald-500 border-emerald-600
-        bg-emerald-950 hover:text-emerald-700 hover:border-emerald-700 active:text-emerald-800 active:border-emerald-800 disabled:bg-zinc-950 disabled:text-emerald-900 disabled:border-emerald-900'
-          >
-            Finalizar Partida
-          </button>
-        )}
-        <h1 className='flex-1 text-center font-bold text-5xl p-2'>
+      <nav className='z-10 relative w-full px-2 py-4 md:px-4 flex flex-col md:flex-row gap-2 justify-between items-center glass-morphism'>
+        <div className='flex flex-wrap gap-2 justify-center md:justify-start'>
+          {estadoPartida !== 1 && (
+            <button
+              onClick={iniciarPartida}
+              className='space-button hover-glow z-10 w-32 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-3 md:px-6 rounded-lg transition-all duration-300'
+            >
+              Iniciar Partida
+            </button>
+          )}
+          {estadoPartida === 1 && (
+            <button
+              onClick={finalizarPartida}
+              className='space-button hover-glow z-10 w-32 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-3 md:px-6 rounded-lg transition-all duration-300'
+            >
+              Finalizar Partida
+            </button>
+          )}
+        </div>
+        
+        <h1 className='flex-1 text-center font-bold text-2xl md:text-4xl lg:text-5xl p-2 text-neon'>
           WELCOME TO
         </h1>
 
-        <button
-          onClick={handleHojaDeCalle}
-          className='z-10 w-40 h-16 font-bold text-center py-2 px-6 rounded-lg button-shaddow border-2 text-emerald-500 border-emerald-600
-          bg-emerald-950 hover:text-emerald-700 hover:border-emerald-700 active:text-emerald-800 active:border-emerald-800 disabled:bg-zinc-950 disabled:text-emerald-900 disabled:border-emerald-900'
-        >
-          {!showHojaPuntos ? 'Hoja de Calles' : 'Cerrar'}
-        </button>
-        <button
-          onClick={handleHistorial}
-          className='z-10 w-40 h-16 font-bold text-center py-2 px-6 rounded-lg button-shaddow border-2 text-emerald-500 border-emerald-600
-          bg-emerald-950 hover:text-emerald-700 hover:border-emerald-700 active:text-emerald-800 active:border-emerald-800 disabled:bg-zinc-950 disabled:text-emerald-900 disabled:border-emerald-900'
-        >
-          {!showHistorial ? 'Historial' : 'Cerrar'}
-        </button>
-        <button
-          onClick={() => agregarEntradaHistorial(`🎲 Acción de prueba - ${new Date().toLocaleTimeString()}`)}
-          className='z-10 w-32 h-16 font-bold text-center py-2 px-4 rounded-lg button-shaddow border-2 text-blue-500 border-blue-600
-          bg-blue-950 hover:text-blue-700 hover:border-blue-700 active:text-blue-800 active:border-blue-800'
-        >
-          Test Historial
-        </button>
-        <button
-          onClick={handleAyuda}
-          className='z-10 w-40 h-16 font-bold text-center py-2 px-6 rounded-lg button-shaddow border-2 text-emerald-500 border-emerald-600
-          bg-emerald-950 hover:text-emerald-700 hover:border-emerald-700 active:text-emerald-800 active:border-emerald-800 disabled:bg-zinc-950 disabled:text-emerald-900 disabled:border-emerald-900'
-        >
-          {!showAyuda ? 'Ayuda' : 'Cerrar'}
-        </button>
+        <div className='flex flex-wrap gap-2 justify-center md:justify-end'>
+          <button
+            onClick={handleHojaDeCalle}
+            className='space-button hover-glow z-10 w-28 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-2 md:px-6 rounded-lg transition-all duration-300'
+          >
+            {!showHojaPuntos ? 'Hoja' : 'Cerrar'}
+          </button>
+          <button
+            onClick={handleHistorial}
+            className='space-button hover-glow z-10 w-28 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-2 md:px-6 rounded-lg transition-all duration-300'
+          >
+            {!showHistorial ? 'Historial' : 'Cerrar'}
+          </button>
+          <button
+            onClick={() => agregarEntradaHistorial(`🎲 Acción de prueba - ${new Date().toLocaleTimeString()}`)}
+            className='space-button hover-glow z-10 w-20 md:w-32 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-2 md:px-4 rounded-lg transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600'
+          >
+            Test
+          </button>
+          <button
+            onClick={handleAyuda}
+            className='space-button hover-glow z-10 w-28 md:w-40 h-12 md:h-16 text-xs md:text-sm font-bold text-center py-2 px-2 md:px-6 rounded-lg transition-all duration-300'
+          >
+            {!showAyuda ? 'Ayuda' : 'Cerrar'}
+          </button>
+        </div>
       </nav>
       <main
-        className={`w-full h-full flex flex-col p-4 gap-8 row-start-2 items-center text-emerald-50 sm:items-start ${
+        className={`w-full h-full flex flex-col p-2 md:p-4 gap-4 md:gap-8 row-start-2 items-center ${
           (showAyuda || showHistorial || showHojaPuntos) && 'hidden'
         }`}
       >
-        <section className='w-full flex flex-col border-2 border-emerald-500 relative overflow-hidden'>
-          <div className='absolute -top-1/3 -left-["5%"] -translate-y-1/2 rounded-full w-full h-full blur-3xl mix-blend-multiply opacity-70 bg-emerald-700 z-0'></div>
-          <div className='absolute top-3/4 -left-1/4 -translate-x-1/2 rounded-full w-full h-full blur-3xl mix-blend-multiply opacity-60 bg-emerald-600 z-0'></div>
+        <section className='w-full max-w-6xl flex flex-col glass-morphism relative overflow-hidden rounded-lg'>
+          <div className='absolute -top-1/3 -left-1/4 rounded-full w-full h-full blur-3xl opacity-30 bg-gradient-to-r from-var(--primary) to-var(--secondary) z-0'></div>
 
-          <div className='z-10 flex-1 flex flex-row flex-wrap justify-center items-center p-2 gap-4  overflow-hidden'>
-            <div className='relative floating-card card-game'>
+          <div className='z-10 flex-1 flex flex-col md:flex-row flex-wrap justify-center items-center p-4 gap-4 overflow-hidden'>
+            <div className='relative floating-card card-game pulse-glow'>
               <Image
                 width={500}
                 height={500}
                 src={images.imgMis1}
                 alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
               />
             </div>
-            <div className='relative floating-card card-game'>
+            <div className='relative floating-card card-game pulse-glow'>
               <Image
                 width={500}
                 height={500}
                 src={images.imgMis2}
                 alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
               />
             </div>
-            <div className='relative floating-card card-game'>
+            <div className='relative floating-card card-game pulse-glow'>
               <Image
                 width={500}
                 height={500}
                 src={images.imgMis3}
                 alt='carta'
-                className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
               />
             </div>
           </div>
         </section>
+        
         <button
           onClick={handleSacarTres}
-          className='z-10 w-40 h-16 font-bold text-center py-2 px-6 rounded-lg button-shaddow border-2 text-emerald-500 border-emerald-600
-          bg-emerald-950 hover:text-emerald-700 hover:border-emerald-700 active:text-emerald-800 active:border-emerald-800 disabled:bg-zinc-950 disabled:text-emerald-900 disabled:border-emerald-900'
+          className='space-button neon-glow z-10 w-40 md:w-48 h-12 md:h-16 font-bold text-center py-2 px-6 rounded-lg transition-all duration-300 disabled:opacity-50'
+          disabled={jugadorReady}
         >
           {jugadorReady ? 'Esperando...' : 'Sacar tres'}
         </button>
-        <section className='w-full flex flex-col p-2 border-2 border-emerald-500 relative overflow-hidden'>
-          <div className='absolute -top-1/3 -left-["5%"] -translate-y-1/2 rounded-full w-full h-full blur-3xl mix-blend-multiply opacity-70 bg-emerald-700 z-0'></div>
-          <div className='absolute top-3/4 -left-1/4 -translate-x-1/2 rounded-full w-full h-full blur-3xl mix-blend-multiply opacity-60 bg-emerald-600 z-0'></div>
+        
+        <section className='w-full max-w-6xl flex flex-col glass-morphism relative overflow-hidden rounded-lg'>
+          <div className='absolute -top-1/3 -right-1/4 rounded-full w-full h-full blur-3xl opacity-30 bg-gradient-to-l from-var(--accent) to-var(--primary) z-0'></div>
 
-          <div className='z-10 flex-1 flex-wrap flex flex-row justify-center items-center p-2 gap-4  overflow-hidden'>
-            <div className='flex flex-row justify-center items-center p-2 gap-4  overflow-hidden'>
-              <div className='relative floating-card card-game'>
+          <div className='z-10 flex-1 flex flex-col lg:flex-row flex-wrap justify-center items-center p-4 gap-4 overflow-hidden'>
+            <div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4'>
+              <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgNum1}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
                 />
               </div>
-              <div className='relative floating-card card-game'>
+              <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgTipo1}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
                 />
               </div>
             </div>
-            <div className=' flex flex-row justify-center items-center p-2 gap-4  overflow-hidden'>
-              <div className='relative floating-card card-game'>
+            <div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4'>
+              <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgNum2}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
                 />
               </div>
-              <div className='relative floating-card card-game'>
+              <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgTipo2}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
                 />
               </div>
             </div>
-            <div className='flex flex-row justify-center items-center p-2 gap-4  overflow-hidden'>
-              <div className='relative floating-card card-game'>
+            <div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4'>
+              <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgNum3}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
                 />
               </div>
-              <div className='relative floating-card card-game'>
+              <div className='relative floating-card card-game hover-glow'>
                 <Image
                   width={500}
                   height={500}
                   src={images.imgTipo3}
                   alt='carta'
-                  className='w-auto p-2 object-contain min-w-32 max-h-[18rem]'
+                  className='w-auto p-2 object-contain min-w-24 max-w-32 md:min-w-32 max-h-32 md:max-h-48'
                 />
               </div>
             </div>
@@ -1483,39 +1482,50 @@ export default function Home() {
         </section>
       </main>
       {showAyuda && (
-        <div className='w-full h-full flex flex-col items-center justify-center'>
-          <Image
-            width={500}
-            height={500}
-            src={'/assets/img/ayuda.png'}
-            alt='carta'
-            className='flex-1 w-auto p-2 object-contain'
-          />
+        <div className='w-full h-full flex flex-col items-center justify-center p-4'>
+          <div className='glass-morphism rounded-lg p-4 max-w-4xl w-full'>
+            <Image
+              width={500}
+              height={500}
+              src={'/assets/img/ayuda.png'}
+              alt='carta'
+              className='w-full h-auto object-contain max-h-[70vh]'
+            />
+          </div>
         </div>
       )}
       {showHistorial && (
-        <div className='w-full h-full flex flex-col items-center justify-center'>
-          <ul>
-            {historial.map((reg, idx) => {
-              // SE PUEDE AÑADIR LA HORA CON: new Date(reg.time).toLocaleString()
-              return (
-                <li key={reg.id} className='text-xl'>
-                  <pre>{reg.log}</pre>
-                </li>
-              )
-            })}
-          </ul>
+        <div className='w-full h-full flex flex-col items-center justify-start p-4 overflow-auto'>
+          <div className='glass-morphism rounded-lg p-4 max-w-4xl w-full max-h-[80vh] overflow-auto'>
+            <h2 className='text-2xl font-bold text-neon mb-4 text-center'>Historial de Partida</h2>
+            {historial.length === 0 ? (
+              <p className='text-center opacity-70'>No hay entradas en el historial</p>
+            ) : (
+              <ul className='space-y-2'>
+                {historial.map((reg, idx) => {
+                  return (
+                    <li key={reg.id} className='text-sm md:text-base p-2 glass-morphism rounded'>
+                      <div className='text-xs opacity-70 mb-1'>
+                        {new Date(reg.time).toLocaleTimeString()}
+                      </div>
+                      <pre className='whitespace-pre-wrap font-mono'>{reg.log}</pre>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+          </div>
         </div>
       )}
       {showHojaPuntos && (
-        <div className='w-full h-full flex flex-col items-center justify-center'>
-          <section className=' relative w-[50rem] h-[50rem] p-2'>
+        <div className='w-full h-full flex flex-col items-center justify-center p-2 md:p-4 overflow-auto'>
+          <section className='relative w-full max-w-[90vw] md:max-w-[50rem] h-auto md:h-[50rem] p-2 glass-morphism rounded-lg'>
             <Image
               width={1200}
               height={1200}
               src={'/assets/img/hoja-puntos.png'}
               alt='carta'
-              className='w-[50rem] h-[50rem] p-2 object-contain select-none pointer-events-none'
+              className='w-full h-auto p-2 object-contain select-none pointer-events-none max-w-[50rem]'
             />
             <input
               name='nombre'
@@ -2722,13 +2732,19 @@ export default function Home() {
           onClick={(e) => {
             e.target.style.display = 'none'
           }}
-          className='absolute w-full h-full flex flex-col items-center justify-center'
+          className='fixed inset-0 w-full h-full flex flex-col items-center justify-center z-50 bg-black bg-opacity-50 backdrop-blur-sm'
         >
-          <div className='flex-col gap-4 z-10 w-96 h-40 rounded-lg flex justify-center items-center bg-emerald-500'>
-            <h1 className='text-3xl font-extrabold'>JUEGO TERMINADO !</h1>
-            <h1 className='text-3xl font-extrabold'>
-              TU PUNTUACION ES: {hojaDePuntos.puntos.totales.final}
-            </h1>
+          <div className='flex-col gap-4 z-10 w-80 md:w-96 h-auto p-6 rounded-lg flex justify-center items-center glass-morphism neon-glow mx-4'>
+            <h1 className='text-xl md:text-3xl font-extrabold text-neon text-center'>JUEGO TERMINADO!</h1>
+            <div className='score-display w-full'>
+              <h2 className='text-lg md:text-2xl font-bold text-center'>
+                TU PUNTUACIÓN ES: 
+              </h2>
+              <div className='text-2xl md:text-4xl font-black text-neon text-center mt-2'>
+                {hojaDePuntos.puntos.totales.final}
+              </div>
+            </div>
+            <p className='text-sm opacity-70 text-center'>Toca para cerrar</p>
           </div>
         </div>
       )}

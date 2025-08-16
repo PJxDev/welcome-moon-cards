@@ -250,10 +250,13 @@ export default function Home() {
     //Hay que comprobar si todos los jugadores estan preparados para sacar Cartas
     if (!allReady) {
       console.log('jugadores no ready')
+      addLog('⏳ Esperando a otros jugadores...', 'esperando-jugadores')
       setJugadorReady(1)
       emitJugadorReady({ userID })
     } else {
       console.log('jugadores READY')
+      addLog('✅ Todos los jugadores listos', 'jugadores-ready')
+      addLog('🃏 Sacando cartas...', 'sacando-cartas')
       emitSacarCartas()
     }
   }
@@ -332,12 +335,18 @@ export default function Home() {
   }
 
   const finalizarPartida = async () => {
+    addLog('🏁 FINALIZANDO PARTIDA', 'finalizar-partida')
+    addLog('Calculando puntuaciones finales...', 'calculo-final')
+    
     await conteoFinalDePuntos()
 
     // PEDIR LISTA DE JUGADORES PARA SABER LOS PUNTOS TOTALES DE TRABAJO √
     // ENVIAR LOS PUNTOS FINALES
     // PEDIR LA LISTA DE JUGADORES PARA SABER LOS PUNTOS FINALES DE CADA UNO
 
+    addLog(`🎯 Tu puntuación final: ${hojaDePuntos.puntos.totales.final} puntos`, 'puntuacion-final')
+    addLog('=============', 'espacio-blanco')
+    
     setEstadoPartida(2)
     emitGamestatus({ estadoPartida: 2 })
     socket.emit('limpiarPlayers')
@@ -490,6 +499,10 @@ export default function Home() {
     resetHojasDePuntos()
 
     setEstadoPartida(1)
+    addLog('=============', 'espacio-blanco')
+    addLog('🎮 NUEVA PARTIDA INICIADA', 'inicio-partida')
+    addLog('Preparando el juego...', 'preparacion')
+    
     handleSacarMisiones()
     let newMazo = shuffle([...Cartas])
 
@@ -1335,6 +1348,13 @@ export default function Home() {
           bg-emerald-950 hover:text-emerald-700 hover:border-emerald-700 active:text-emerald-800 active:border-emerald-800 disabled:bg-zinc-950 disabled:text-emerald-900 disabled:border-emerald-900'
         >
           {!showHistorial ? 'Historial' : 'Cerrar'}
+        </button>
+        <button
+          onClick={() => agregarEntradaHistorial(`🎲 Acción de prueba - ${new Date().toLocaleTimeString()}`)}
+          className='z-10 w-32 h-16 font-bold text-center py-2 px-4 rounded-lg button-shaddow border-2 text-blue-500 border-blue-600
+          bg-blue-950 hover:text-blue-700 hover:border-blue-700 active:text-blue-800 active:border-blue-800'
+        >
+          Test Historial
         </button>
         <button
           onClick={handleAyuda}

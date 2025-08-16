@@ -242,7 +242,7 @@ export default function Home() {
       />
 
       <main
-        className={`w-full h-full flex flex-col p-4 gap-8 row-start-2 items-center ${
+        className={`w-full h-full flex flex-col p-2 sm:p-4 gap-4 sm:gap-8 row-start-2 items-center ${
           (showAyuda || showHistorial || showHojaPuntos) && 'hidden'
         }`}
       >
@@ -250,7 +250,7 @@ export default function Home() {
 
         <button
           onClick={handleSacarTresCartas}
-          className='space-button neon-glow z-10 w-48 h-16 font-bold text-center py-2 px-6 rounded-lg transition-all duration-300 disabled:opacity-50'
+          className='space-button neon-glow z-10 w-40 h-12 sm:w-48 sm:h-16 font-bold text-center py-2 px-4 sm:px-6 rounded-lg transition-all duration-300 disabled:opacity-50 text-sm sm:text-base'
           disabled={jugadorReady}
         >
           {jugadorReady ? 'Esperando...' : 'Sacar tres'}

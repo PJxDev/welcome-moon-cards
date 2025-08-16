@@ -135,7 +135,7 @@ body::before {
   font-family: 'Orbitron', monospace;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .floating-card {
     animation: float 4s ease-in-out infinite;
   }
@@ -151,6 +151,27 @@ body::before {
   
   .card-game {
     border-radius: 12px;
+  }
+
+  /* Mobile menu specific styles */
+  .text-neon {
+    font-size: 1.5rem;
+  }
+  
+  /* Hamburger menu animation improvements */
+  .space-button span {
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .text-neon {
+    font-size: 1.25rem;
+  }
+  
+  .space-button {
+    font-size: 0.75rem;
+    padding: 6px 12px;
   }
 }
 

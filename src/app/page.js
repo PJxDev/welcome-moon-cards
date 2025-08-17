@@ -42,6 +42,7 @@ export default function Home() {
   const [showAyuda, setShowAyuda] = useState(false)
   const [showHistorial, setShowHistorial] = useState(false)
   const [showHojaPuntos, setShowHojaPuntos] = useState(false)
+  const [esperarJugadores, setEsperarJugadores] = useState(true)
 
   const handleAyuda = () => {
     setShowAyuda(!showAyuda)
@@ -87,13 +88,17 @@ export default function Home() {
   }
 
   const handleSacarTresCartas = () => {
-    if (!jugadorReady) {
+    if (esperarJugadores && !jugadorReady) {
       console.log('jugadores no ready')
       addLog('⏳ Esperando a otros jugadores...', 'esperando-jugadores')
       handleSacarTres(false)
     } else {
-      console.log('jugadores READY')
-      addLog('✅ Todos los jugadores listos', 'jugadores-ready')
+      console.log('jugadores READY o modo sin espera')
+      if (esperarJugadores) {
+        addLog('✅ Todos los jugadores listos', 'jugadores-ready')
+      } else {
+        addLog('🎯 Sacando cartas sin esperar', 'sin-espera')
+      }
       addLog('🃏 Sacando cartas...', 'sacando-cartas')
       handleSacarTres(true)
     }
@@ -248,13 +253,25 @@ export default function Home() {
       >
         <MissionCards images={images} />
 
-        <button
+        <div className="flex flex-col items-center gap-4">
+          <label className="flex items-center gap-2 text-neon text-sm md:text-base">
+            <input
+              type="checkbox"
+              checked={esperarJugadores}
+              onChange={(e) => setEsperarJugadores(e.target.checked)}
+              className="w-4 h-4 accent-cyan-400"
+            />
+            Esperar a otros jugadores
+          </label>
+
+          <button
           onClick={handleSacarTresCartas}
           className='space-button neon-glow z-10 w-40 h-12 md:w-48 md:h-16 font-bold text-center py-2 px-4 md:px-6 rounded-lg transition-all duration-300 disabled:opacity-50 text-sm md:text-base'
-          disabled={jugadorReady}
+          disabled={esperarJugadores && jugadorReady}
         >
-          {jugadorReady ? 'Esperando...' : 'Sacar tres'}
+          {(esperarJugadores && jugadorReady) ? 'Esperando...' : 'Sacar tres'}
         </button>
+        </div>
 
         <GameCards images={images} />
       </main>

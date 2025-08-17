@@ -178,10 +178,10 @@ export default function Home() {
           changeImage('imgNum3', n3.frontal.img)
 
           addLog('***', 'espacio-cartas')
-          addLog(`-> Se robaron tres cartas:`, 'sacar-cartas')
-          addLog(`  Opcion 1: ${n1.frontal.valor} ${TIPOS_EMOJIS[t1.reverso.tipo]}`, 'carta-1')
-          addLog(`   Opcion 2: ${n2.frontal.valor} ${TIPOS_EMOJIS[t2.reverso.tipo]}`, 'carta-2')
-          addLog(`    Opcion 3: ${n3.frontal.valor} ${TIPOS_EMOJIS[t3.reverso.tipo]}`, 'carta-3')
+          addLog(`🃏 Se robaron tres cartas:`, 'sacar-cartas')
+          addLog(`  🎯 Opción 1: ${n1.frontal.valor} ${TIPOS_EMOJIS[t1.reverso.tipo]} (Carta #${n1.id} + Tipo #${t1.id})`, 'carta-1')
+          addLog(`  🎯 Opción 2: ${n2.frontal.valor} ${TIPOS_EMOJIS[t2.reverso.tipo]} (Carta #${n2.id} + Tipo #${t2.id})`, 'carta-2')
+          addLog(`  🎯 Opción 3: ${n3.frontal.valor} ${TIPOS_EMOJIS[t3.reverso.tipo]} (Carta #${n3.id} + Tipo #${t3.id})`, 'carta-3')
         } else {
           changeImage('imgTipo1', '/assets/img/dummy.png')
           changeImage('imgTipo2', '/assets/img/dummy.png')
@@ -207,10 +207,10 @@ export default function Home() {
           return
 
         addLog('=============', 'espacio-blanco')
-        addLog('Se inicio la partida', 'inicio-partida')
-        addLog(`  Mision 1: ${m1.id}`, 'mision-1')
-        addLog(`   Mision 2: ${m2.id}`, 'mision-2')
-        addLog(`    Mision 3: ${m3.id}`, 'mision-3')
+        addLog('🚀 Se inició la partida', 'inicio-partida')
+        addLog(`  🎯 Misión 1: #${m1.id} (Nivel ${m1.nivel})`, 'mision-1')
+        addLog(`  🎯 Misión 2: #${m2.id} (Nivel ${m2.nivel})`, 'mision-2')
+        addLog(`  🎯 Misión 3: #${m3.id} (Nivel ${m3.nivel})`, 'mision-3')
 
         changeImage('imgMis1', m1.img)
         changeImage('imgMis2', m2.img)

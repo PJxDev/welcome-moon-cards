@@ -46,7 +46,7 @@ export default function GameHeader({
       <div className='md:hidden flex items-center'>
         <button
           onClick={toggleMobileMenu}
-          className='space-button hover-glow z-20 w-12 h-12 flex flex-col justify-center items-center rounded-lg transition-all duration-300'
+          className='space-button hover-glow z-50 w-12 h-12 flex flex-col justify-center items-center rounded-lg transition-all duration-300'
         >
           <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
           <span className={`block w-6 h-0.5 bg-white my-1 transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
@@ -82,7 +82,7 @@ export default function GameHeader({
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className='md:hidden absolute top-full left-0 right-0 glass-morphism z-30 p-4 mt-2 mx-4 rounded-lg'>
+        <div className='md:hidden absolute top-full left-0 right-0 glass-morphism z-50 p-4 mt-2 mx-4 rounded-lg'>
           <div className='flex flex-col gap-3'>
             {estadoPartida !== 1 && (
               <button
